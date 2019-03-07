@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace EasyScrumBoard.ViewModel.Base
+namespace EasyScrumBoard.ViewModel
 {
     /// <summary>
     /// A basic command that runs an Action

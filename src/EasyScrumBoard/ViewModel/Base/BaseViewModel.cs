@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 //using PropertyChanged;
 
-namespace EasyScrumBoard.ViewModel.Base
+namespace EasyScrumBoard.ViewModel
 {
     /// <summary>
     /// A base view model that fires Property Changed events as needed
