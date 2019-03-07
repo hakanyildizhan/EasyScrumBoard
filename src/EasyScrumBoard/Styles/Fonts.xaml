@@ -1,7 +1,27 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:EasyScrumBoard.Styles">
-    
-    
-    
+
+    <!-- Fonts have to be under Fonts\ folder (directly), otherwise they are not rendered in XAML preview -->
+    <!-- pack://application;,,, (app root path) / Fonts / #<Font name defined in the .ttf file> -->
+    <FontFamily x:Key="LatoRegular">pack://application;,,,/Fonts/#Lato Regular</FontFamily>
+    <FontFamily x:Key="LatoThin">pack://application;,,,/Fonts/#Lato Thin</FontFamily>
+
+    <!-- Define style -->
+    <Style TargetType="{x:Type Control}" x:Key="BaseStyle"> <!-- Lowest UI element that we can get -->
+        <Setter Property="FontFamily" Value="{StaticResource LatoThin}"/>
+    </Style>
+
+    <!-- Because TextBlock is not a Control, it can't inherit the one above, so this definition is needed -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlockStyle">
+        <Setter Property="FontFamily" Value="{StaticResource LatoThin}"/>
+    </Style>
+
+    <!-- Apply style on different controls -->
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}"/>
+    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseStyle}"/>
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}"/>
+    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}"/>
+    <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource BaseStyle}"/>
+
 </ResourceDictionary>
