@@ -21,9 +21,9 @@ namespace EasyScrumBoard.ViewModel
 
         /// <summary>
         /// Actual window will be slightly larger than the visible window; the space in between will have a drop shadow. 
-        /// This is the margin around the window to allow for that.
+        /// This is the padding from the outer edge to the inner visible portion of the window to allow for that.
         /// </summary>
-        private int _marginSize = 10;
+        private int _paddingSize = 10;
 
         /// <summary>
         /// Radius for the edges of the main window.
@@ -41,30 +41,30 @@ namespace EasyScrumBoard.ViewModel
 
         /// <summary>
         /// ResizeBorder to be used as a binding attribute.
-        /// Distance of the handle should begin from the visible portion of the window, so we need to compensate for the Actual Margin Size.
+        /// Distance of the handle should begin from the visible portion of the window, so we need to compensate for the Actual Padding Size.
         /// </summary>
-        public Thickness ResizeBorderThickness { get { return new Thickness(ResizeBorder + ActualMarginSize); } }
+        public Thickness ResizeBorderThickness { get { return new Thickness(ResizeBorder + ActualPaddingSize); } }
 
         /// <summary>
-        /// Actual margin around the window to allow for a drop shadow.
-        /// When the window is maximized, the visible portion should touch the edges of the screen, and in this case no drop shadow (thus margin) will be needed.
+        /// Actual padding from the outer edge to the inner visible portion of the window to allow for a drop shadow.
+        /// When the window is maximized, the visible portion should touch the edges of the screen, and in this case no drop shadow (thus padding) will be needed.
         /// </summary>
-        public int ActualMarginSize
+        public int ActualPaddingSize
         {
             get
             {
-                return _window.WindowState == WindowState.Maximized ? 0 : _marginSize;
+                return _window.WindowState == WindowState.Maximized ? 0 : _paddingSize;
             }
             set
             {
-                _marginSize = value;
+                _paddingSize = value;
             }
         }
 
         /// <summary>
-        /// ActualMarginSize to be used as a binding attribute.
+        /// ActualPaddingSize to be used as a binding attribute.
         /// </summary>
-        public Thickness ActualMarginSizeThickness { get { return new Thickness(ActualMarginSize); } }
+        public Thickness ActualPaddingSizeThickness { get { return new Thickness(ActualPaddingSize); } }
 
         /// <summary>
         /// Actual radius for the edges of the main window.
@@ -92,6 +92,11 @@ namespace EasyScrumBoard.ViewModel
         /// </summary>
         public int TitleHeight { get; set; } = 42;
 
+        /// <summary>
+        /// TitleHeight to be used as a binding attribute.
+        /// </summary>
+        public GridLength TitleHeightGridLength { get { return new GridLength(TitleHeight); } }
+
         #endregion
 
         public WindowViewModel(Window window)
@@ -110,8 +115,8 @@ namespace EasyScrumBoard.ViewModel
         private void OnWindowStateChanged(object sender, EventArgs e)
         {
             OnPropertyChanged(nameof(ResizeBorderThickness));
-            OnPropertyChanged(nameof(ActualMarginSize));
-            OnPropertyChanged(nameof(ActualMarginSizeThickness));
+            OnPropertyChanged(nameof(ActualPaddingSize));
+            OnPropertyChanged(nameof(ActualPaddingSizeThickness));
             OnPropertyChanged(nameof(WindowRadius));
             OnPropertyChanged(nameof(WindowCornerRadius));
         }

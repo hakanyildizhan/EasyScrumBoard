@@ -11,10 +11,60 @@
         x:Name="AppWindow"
         Title="Welcome" Height="600" Width="800">
 
+    <Window.Resources>
+        <Style TargetType="{x:Type local:MainWindow}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        
+                        <!-- Invisible portion of the window from the (invisible) outer edge to the edges of the visible part -->
+                        <Border Padding="{Binding ActualPaddingSizeThickness, FallbackValue=10}">
+
+                            <!-- Visible part of the window -->
+                            <Grid>
+
+                                <!-- Visible window border and shadow -->
+                                <Border 
+                                    CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}" 
+                                    Background="{Binding ForegroundLightBrush, FallbackValue=White}">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0" Opacity="0.2"/>
+                                    </Border.Effect>
+                                </Border>
+
+                                <!-- Window content -->
+                                <Grid>
+                                    <Grid.RowDefinitions>
+
+                                        <!-- Title bar -->
+                                        <RowDefinition Height="{Binding TitleHeightGridLength, FallbackValue=42}"/>
+
+                                        <!-- Shadow below the title bar -->
+                                        <RowDefinition Height="Auto"/>
+
+                                        <!-- Content -->
+                                        <RowDefinition Height="*"/>
+                                        <!-- Will take whatever space is left -->
+
+                                    </Grid.RowDefinitions>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                                
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+        </Style>
+        
+        
+    </Window.Resources>
+    
     <WindowChrome.WindowChrome>
         <WindowChrome 
             ResizeBorderThickness="{Binding ResizeBorderThickness}"
-            CaptionHeight="{Binding TİtleHeight}"
+            CaptionHeight="{Binding TitleHeight}"
+            CornerRadius="0"
             GlassFrameThickness="0"
             />
     </WindowChrome.WindowChrome>
