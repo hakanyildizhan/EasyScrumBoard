@@ -10,9 +10,17 @@
         WindowStartupLocation="CenterScreen"
         x:Name="AppWindow"
         Title="Welcome" Height="600" Width="800">
-    <StackPanel>
 
-        <TextBlock Text="{Binding Test}"/>
-
-    </StackPanel>
+    <WindowChrome.WindowChrome>
+        <WindowChrome 
+            ResizeBorderThickness="{Binding ResizeBorderThickness}"
+            CaptionHeight="{Binding TİtleHeight}"
+            GlassFrameThickness="0"
+            />
+    </WindowChrome.WindowChrome>
+    
+    <Grid Background="Red">
+        
+        
+    </Grid>
 </Window>
